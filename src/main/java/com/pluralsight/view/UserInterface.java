@@ -13,11 +13,11 @@ import java.util.Scanner;
 public class UserInterface {
 
     private Order order;
-    private Scanner scanner;
+    private Scanner scanner = new Scanner(System.in);
 
-    public void display() {
-
-
+    public UserInterface() {
+        this.order = new Order();
+        homeScreen();
     }
 
     public void homeScreen() {
@@ -44,6 +44,7 @@ public class UserInterface {
 
     public void orderScreen() {
 
+        while (true) {
         System.out.println("1) Add Sandwich\n" +
                 "2) Add Drink\n" +
                 "3) Add Chips\n" +
@@ -51,7 +52,7 @@ public class UserInterface {
                 "0) Cancel Order\n");
         String option = scanner.nextLine().trim();
 
-        while (true) {
+
             switch (option) {
                 case "1":
                     addSandwichScreen();
@@ -75,7 +76,7 @@ public class UserInterface {
 
     }
 
-    public Sandwich addSandwichScreen() {
+    public void addSandwichScreen() {
 
         System.out.println("Select your bread: \n- white\n" +
                 "- wheat\n" +
@@ -85,6 +86,7 @@ public class UserInterface {
 
         System.out.println("Select the sandwich size: \n-4''\n-8''\n12''\n");
         int size = scanner.nextInt();
+        scanner.nextLine();
 
 
         List<Meat> meats = addMeatsScreen();
@@ -115,8 +117,8 @@ public class UserInterface {
             isToasted = false;
         }
 
-        return new Sandwich(bread, size, toppings, isToasted);
-        ;
+        order.addSandwiches(new Sandwich(bread, size, toppings, isToasted));
+
     }
 
     public List<Meat> addMeatsScreen() {
@@ -198,12 +200,10 @@ public class UserInterface {
 
         while (continueMenu) {
             System.out.println("Select one of the following cheese to add to your sandwich: \n" +
-                    "- mayo\n" +
-                    "- mustard\n" +
-                    "- ketchup\n" +
-                    "- ranch\n" +
-                    "- thousand islands\n" +
-                    "- vinaigrette\n"
+                    "- american\n" +
+                    "- provolone\n" +
+                    "- cheddar\n" +
+                    "- swiss"
             );
             String cheeseSelected = scanner.nextLine().trim();
 
@@ -260,7 +260,7 @@ public class UserInterface {
         return regularToppings;
     }
 
-    public Drink addDrinkScreen() {
+    public void addDrinkScreen() {
 
         System.out.println("Enter the flavor you want to pick for your drink: \n" +
                 "1) Pepsi\n" +
@@ -302,17 +302,18 @@ public class UserInterface {
                 break;
             default:
                 System.out.println("Invalid drink flavor selected!");
-                return null;
+                return;
         }
 
         System.out.println("Select the size of the drink you want to select: (S/M/L)");
         String size = scanner.nextLine().trim();
 
-        return new Drink(size, flavor);
+        order.addDrinks(new Drink(size, flavor));
+
 
     }
 
-    public Chip addChipScreen() {
+    public void addChipScreen() {
 
         System.out.println("Select the flavor of the chip you want to add: \n" +
                 "1) BBQ\n" +
@@ -334,15 +335,33 @@ public class UserInterface {
                 break;
             default:
                 System.out.println("Incorrect chip flavor entered!");
-                return null;
+                return;
         }
 
-        return new Chip(flavor);
+        order.addChip(new Chip(flavor));
 
     }
 
     public void checkoutScreen() {
 
+        System.out.println("Order Details: ");
+        System.out.println(order.toString());
 
+        System.out.println("Do you want to confirm your order? (Y/N)");
+        String option = scanner.nextLine().trim();
+
+        if (option.equalsIgnoreCase("y")){
+            order.checkout();
+        }else {
+            System.out.println("Do you want to continue with your order or cancel the order?\n1-) Cancel the Order\n2-)Continue with the Order");
+            String cancelOrContinue = scanner.nextLine().trim();
+
+            if (cancelOrContinue.equalsIgnoreCase("1")){
+                order = null;
+                homeScreen();
+            }else {
+                homeScreen();
+            }
+        }
     }
 }

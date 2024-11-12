@@ -29,4 +29,11 @@ public class Drink implements Item{
             return 3;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Drink: " +
+                "size='" + size + '\'' +
+                ", flavor='" + flavor + '\'';
+    }
 }

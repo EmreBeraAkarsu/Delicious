@@ -52,4 +52,14 @@ public class Sandwich implements Item {
         }
         return totalSandwichPrice;
     }
+
+    @Override
+    public String toString() {
+        return "Sandwich{" +
+                "bread='" + bread + '\'' +
+                ", size=" + size +
+                ", toppings=" + toppings +
+                ", isToasted=" + isToasted +
+                '}';
+    }
 }
