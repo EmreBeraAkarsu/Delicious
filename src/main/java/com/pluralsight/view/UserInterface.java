@@ -1,10 +1,8 @@
 package com.pluralsight.view;
 
+import com.pluralsight.items.Sandwich;
 import com.pluralsight.order.Order;
-import com.pluralsight.toppings.Cheese;
-import com.pluralsight.toppings.Meat;
-import com.pluralsight.toppings.RegularTopping;
-import com.pluralsight.toppings.Sauce;
+import com.pluralsight.toppings.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +85,36 @@ public class UserInterface {
         System.out.println("Select the sandwich size: \n-4''\n-8''\n12''\n");
         int size = scanner.nextInt();
 
+
+        List<Meat> meats = addMeatsScreen();
+
+        List<Sauce> sauces = addSaucesScreen();
+
+        List<Cheese> cheeses = addCheesesScreen();
+
+        List<RegularTopping> regularToppings = addRegularToppingsScreen();
+
+        List<Topping> toppings  = new ArrayList<>();
+
+        toppings.addAll(meats);
+        toppings.addAll(cheeses);
+        toppings.addAll(sauces);
+        toppings.addAll(regularToppings);
+
+        System.out.println("Do you want your sandwich to be toasted? (yes/no)");
+        String toastedOption = scanner.nextLine().trim();
+
+        boolean isToasted;
+
+
+            if (toastedOption.equalsIgnoreCase("yes")){
+                isToasted = true;
+
+            } else{
+                isToasted =false;
+            }
+
+        Sandwich sandwich = new Sandwich(bread, size, toppings, isToasted);
 
 
     }
