@@ -9,6 +9,6 @@ public class OrderFileManager {
 
     public String createReceipt(Order order){
 
-        
+
     }
 }
