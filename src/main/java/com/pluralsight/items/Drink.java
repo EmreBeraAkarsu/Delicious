@@ -21,6 +21,12 @@ public class Drink implements Item{
 
     @Override
     public double getPrice() {
-        return 0;
+        if (size.equalsIgnoreCase("s")){
+            return 2;
+        } else if (size.equalsIgnoreCase("m")) {
+            return 2.5;
+        }else {
+            return 3;
+        }
     }
 }

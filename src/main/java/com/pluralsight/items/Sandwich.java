@@ -5,7 +5,7 @@ import com.pluralsight.toppings.*;
 import javax.security.sasl.SaslClient;
 import java.util.List;
 
-public class Sandwich implements Item{
+public class Sandwich implements Item {
 
     private String bread;
     private int size;
@@ -37,6 +37,19 @@ public class Sandwich implements Item{
 
     @Override
     public double getPrice() {
-        return 0;
+        double totalSandwichPrice = 0;
+
+        if (size == 4){
+            totalSandwichPrice += 5.5;
+        } else if (size == 8) {
+            totalSandwichPrice += 7;
+        }else {
+            totalSandwichPrice += 8.5;
+        }
+
+        for (Topping topping : toppings) {
+            totalSandwichPrice += topping.calculatePrice(size);
+        }
+        return totalSandwichPrice;
     }
 }

@@ -15,6 +15,6 @@ public class Chip implements Item{
 
     @Override
     public double getPrice() {
-        return 0;
+        return 1.5;
     }
 }

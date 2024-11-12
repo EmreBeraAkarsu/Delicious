@@ -7,6 +7,6 @@ public class Cheese extends Topping{
 
     @Override
     public double calculatePrice(int size) {
-        return 0;
+        return .75 * (size / 4);
     }
 }
