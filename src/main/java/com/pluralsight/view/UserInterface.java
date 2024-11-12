@@ -1,5 +1,6 @@
 package com.pluralsight.view;
 
+import com.pluralsight.items.Chip;
 import com.pluralsight.items.Drink;
 import com.pluralsight.items.Sandwich;
 import com.pluralsight.order.Order;
@@ -262,25 +263,81 @@ public class UserInterface {
     public Drink addDrinkScreen() {
 
         System.out.println("Enter the flavor you want to pick for your drink: \n" +
-                "Pepsi\n" +
-                "Lemonade\n" +
-                "Orange Juice\n" +
-                "Turkish Tea\n" +
-                "Turkish Coffee\n" +
-                "Salgam\n" +
-                "ARAK\n" +
-                "Sahlap\n");
-        String flavor = scanner.nextLine().trim();
+                "1) Pepsi\n" +
+                "2) Lemonade\n" +
+                "3) Orange Juice\n" +
+                "4) Turkish Tea\n" +
+                "5) Turkish Coffee\n" +
+                "6) Salgam\n" +
+                "7) ARAK\n" +
+                "8) Sahlap\n");
+        String option = scanner.nextLine().trim();
+
+        String flavor;
+
+        switch (option){
+            case "1":
+                flavor = "Pepsi";
+                break;
+            case "2":
+                flavor = "Lemonade";
+                break;
+            case "3":
+                flavor = "Orange Juice";
+                break;
+            case "4":
+                flavor = "Turkish Tea";
+                break;
+            case "5":
+                flavor = "Turkish Coffee";
+                break;
+            case "6":
+                flavor = "Salgam";
+                break;
+            case "7":
+                flavor = "ARAK";
+                break;
+            case "8":
+                flavor = "Sahlap";
+                break;
+            default:
+                System.out.println("Invalid drink flavor selected!");
+                return null;
+        }
 
         System.out.println("Select the size of the drink you want to select: (S/M/L)");
         String size = scanner.nextLine().trim();
 
         return new Drink(size, flavor);
-        ;
+
     }
 
-    public void addChipScreen() {
+    public Chip addChipScreen() {
 
+        System.out.println("Select the flavor of the chip you want to add: \n" +
+                "1) BBQ\n" +
+                "2) Sea Salt\n" +
+                "3) Cheddar");
+        String option = scanner.nextLine().trim();
+
+        String flavor;
+
+        switch (option){
+            case "1":
+                flavor = "BBQ";
+                break;
+            case "2":
+                flavor = "Sea Salt";
+                break;
+            case "3":
+                flavor = "Cheddar";
+                break;
+            default:
+                System.out.println("Incorrect chip flavor entered!");
+                return null;
+        }
+
+        return new Chip(flavor);
 
     }
 
