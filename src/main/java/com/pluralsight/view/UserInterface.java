@@ -133,22 +133,23 @@ public class UserInterface {
         boolean continueMenu = true;
 
         while (continueMenu){
-            System.out.println("Select one of the following meats to add to your sandwich: \n" +
-                    "- steak\n" +
-                    "- ham\n" +
-                    "- salami\n" +
-                    "- roast beef\n" +
-                    "- chicken\n" +
-                    "- bacon\n");
-            String meatSelected = scanner.nextLine().trim();
+            System.out.println("Select one of the following sauces to add to your sandwich: \n" +
+                            "- mayo\n" +
+                            "- mustard\n" +
+                            "- ketchup\n" +
+                            "- ranch\n" +
+                            "- thousand islands\n" +
+                            "- vinaigrette"
+                    );
+            String sauceSelected = scanner.nextLine().trim();
 
-            Meat meat = new Meat(meatSelected);
+            Meat meat = new Meat(sauceSelected);
 
             System.out.println("Do you want to add more meat? (yes/no)");
             String continueAdding = scanner.nextLine().trim();
 
             if (continueAdding.equalsIgnoreCase("yes")){
-                System.out.println("Adding another meat...");
+                System.out.println("Adding another sauce...");
             } else if (continueAdding.equalsIgnoreCase("no")) {
                 continueMenu = false;
             }else {
@@ -156,7 +157,7 @@ public class UserInterface {
             }
         }
 
-        return meats;
+        return sauces;
 
     }
 
