@@ -143,9 +143,9 @@ public class UserInterface {
                     );
             String sauceSelected = scanner.nextLine().trim();
 
-            Meat meat = new Meat(sauceSelected);
+            Sauce sauce = new Sauce(sauceSelected);
 
-            System.out.println("Do you want to add more meat? (yes/no)");
+            System.out.println("Do you want to add more sauce? (yes/no)");
             String continueAdding = scanner.nextLine().trim();
 
             if (continueAdding.equalsIgnoreCase("yes")){
@@ -164,13 +164,72 @@ public class UserInterface {
     public List<Cheese> addCheesesScreen(){
 
 
+        List<Cheese> cheeses = new ArrayList<>();
 
+        boolean continueMenu = true;
+
+        while (continueMenu){
+            System.out.println("Select one of the following cheese to add to your sandwich: \n" +
+                    "- mayo\n" +
+                    "- mustard\n" +
+                    "- ketchup\n" +
+                    "- ranch\n" +
+                    "- thousand islands\n" +
+                    "- vinaigrette\n"
+            );
+            String cheeseSelected = scanner.nextLine().trim();
+
+            Cheese cheese = new Cheese(cheeseSelected);
+
+            System.out.println("Do you want to add more cheese? (yes/no)");
+            String continueAdding = scanner.nextLine().trim();
+
+            if (continueAdding.equalsIgnoreCase("yes")){
+                System.out.println("Adding another cheese...");
+            } else if (continueAdding.equalsIgnoreCase("no")) {
+                continueMenu = false;
+            }else {
+                System.out.println("Invalid option for adding more selected!");
+            }
+        }
+
+        return cheeses;
     }
 
     public List<RegularTopping> addRegularToppingsScreen(){
 
+        List<RegularTopping> regularToppings = new ArrayList<>();
 
+        boolean continueMenu = true;
 
+        while (continueMenu){
+            System.out.println("Select one of the following Regular Toppings to add to your sandwich: \n- lettuce\n" +
+                    "- peppers\n" +
+                    "- onions\n" +
+                    "- tomatoes\n" +
+                    "- jalepenos\n" +
+                    "- cucumbers\n" +
+                    "- pickles\n" +
+                    "- guacamole\n" +
+                    "- mushrooms\n"
+            );
+            String regularToppingSelected = scanner.nextLine().trim();
+
+            RegularTopping regularTopping = new RegularTopping(regularToppingSelected);
+
+            System.out.println("Do you want to add more Regular Toppings? (yes/no)");
+            String continueAdding = scanner.nextLine().trim();
+
+            if (continueAdding.equalsIgnoreCase("yes")){
+                System.out.println("Adding another Regular Topping...");
+            } else if (continueAdding.equalsIgnoreCase("no")) {
+                continueMenu = false;
+            }else {
+                System.out.println("Invalid option for adding more selected!");
+            }
+        }
+
+        return regularToppings;
     }
 
     public void addDrinkScreen(){
