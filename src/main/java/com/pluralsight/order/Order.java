@@ -7,18 +7,22 @@ import com.pluralsight.items.Sandwich;
 import java.util.ArrayList;
 import java.util.List;
 
+// The Order class combines all the items selected by the customer into a single class
 public class Order {
 
+    // Lists of items are stored inside lists
     private List<Sandwich> sandwiches;
     private List<Chip> chips;
     private List<Drink> drinks;
 
+    //Constructor
     public Order() {
         this.sandwiches = new ArrayList<>();
         this.chips = new ArrayList<>();
         this.drinks = new ArrayList<>();
     }
 
+    //Getters and adders
     public List<Sandwich> getSandwiches() {
         return sandwiches;
     }
@@ -43,24 +47,31 @@ public class Order {
         drinks.add(drink);
     }
 
+    // Total price of the order calculated
     public double getTotalPrice(){
+
+        //Total initialized to 0
         double totalPriceOfTheOrder = 0;
 
+        // Iterate through the sandwiches list, get the price, and add to total
         for (Sandwich sandwich : sandwiches) {
             totalPriceOfTheOrder += sandwich.getPrice();
         }
-
+        // Iterate through the chips list, get the price, and add to total
         for (Chip chip : chips) {
             totalPriceOfTheOrder += chip.getPrice();
         }
 
+        // Iterate through the drinks list, get the price, and add to total
         for (Drink drink : drinks) {
             totalPriceOfTheOrder += drink.getPrice();
         }
 
+        // Return the total price
         return totalPriceOfTheOrder;
     }
 
+    //
     public void checkout(){
 
         OrderFileManager orderFileManager = new OrderFileManager();
