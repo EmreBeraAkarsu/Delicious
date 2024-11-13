@@ -1,0 +1,1 @@
+sandwiches=[Sandwich{bread='white', size=4, toppings=[], isToasted=true}], chips=[Chip: type='BBQ'], drinks=[Drink: size='s', flavor='Sahlap']Total Price: 9.0
