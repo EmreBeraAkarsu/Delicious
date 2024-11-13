@@ -71,7 +71,7 @@ public class Order {
         return totalPriceOfTheOrder;
     }
 
-    //
+    // Method to initiate an OrderFileManager object, generate a receipt, save the receipt to a file
     public void checkout(){
 
         OrderFileManager orderFileManager = new OrderFileManager();
@@ -80,6 +80,7 @@ public class Order {
 
     }
 
+    //Method to convert the data to a string
     @Override
     public String toString() {
         return "sandwiches=" + sandwiches +
