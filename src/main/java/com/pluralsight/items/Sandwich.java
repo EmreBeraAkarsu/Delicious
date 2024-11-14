@@ -3,10 +3,11 @@ package com.pluralsight.items;
 import com.pluralsight.toppings.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 //Sandwich class for creating the chip objects to be stored in the order. This class implements the Item interface.
-public class Sandwich implements Item {
+public class Sandwich implements IPrice {
 
     //The details of the Sandwich is stored in the variables below
     private String bread;
@@ -15,10 +16,10 @@ public class Sandwich implements Item {
     private boolean isToasted;
 
     //Constructor
-    public Sandwich(String bread, int size, List<Topping> toppings, boolean isToasted) {
+    public Sandwich(String bread, int size, boolean isToasted) {
         this.bread = bread;
         this.size = size;
-        this.toppings = toppings;
+        this.toppings = new ArrayList<>();
         this.isToasted = isToasted;
     }
 
@@ -39,20 +40,18 @@ public class Sandwich implements Item {
         return isToasted;
     }
 
+    public void addToppings(Topping topping){
+        toppings.add(topping);
+    }
+
     //Method to calculate the price of the sandwich
     @Override
     public double getPrice() {
         //The variable for the total is initialized at 0
         double totalSandwichPrice = 0;
 
-        //Add the base price depending on the size of the sandwich
-        if (size == 4){
-            totalSandwichPrice += 5.5;
-        } else if (size == 8) {
-            totalSandwichPrice += 7;
-        }else {
-            totalSandwichPrice += 8.5;
-        }
+        //Add the base price to the total using the getBasePrice() method
+        totalSandwichPrice += getBasePrice();
 
         //Iterate through all the toppings, call each toppings' calculatePrice() method to get the corresponding price, add the price to the total
         for (Topping topping : toppings) {
@@ -63,6 +62,24 @@ public class Sandwich implements Item {
         return totalSandwichPrice;
     }
 
+    public double getBasePrice(){
+
+        double basePrice = 0;
+
+        switch (size){
+            case 4:
+                basePrice += 5.5;
+                break;
+            case 8:
+                basePrice += 7;
+                break;
+            case 12:
+                basePrice += 8.5;
+                break;
+        }
+        return basePrice;
+    }
+
     //Method to convert the data to a string
     @Override
     public String toString() {
@@ -71,6 +88,7 @@ public class Sandwich implements Item {
                 ", size=" + size +
                 ", toppings=" + toppings +
                 ", isToasted=" + isToasted +
+                "Price: $" + getPrice() +
                 '}';
     }
 }

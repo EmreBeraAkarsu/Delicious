@@ -1,7 +1,7 @@
 package com.pluralsight.items;
 
 //Chip class for creating the chip objects to be stored in the order. This class implements the Item interface.
-public class Chip implements Item{
+public class Chip implements IPrice {
 
     // Type of the chips stored here
     private String type;
@@ -24,7 +24,6 @@ public class Chip implements Item{
     //Method to convert the data to a string
     @Override
     public String toString() {
-        return "Chip: " +
-                "type='" + type + '\'';
+        return "Chip: " + type + " - Price: $" + getPrice();
     }
 }
