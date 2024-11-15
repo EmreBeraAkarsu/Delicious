@@ -16,4 +16,9 @@ public abstract class Topping {
 
     //Method to calculate the toppings' prices
     public abstract double calculatePrice(int size);
+
+    @Override
+    public String toString() {
+        return "type='" + type;
+    }
 }

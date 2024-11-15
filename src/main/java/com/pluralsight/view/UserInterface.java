@@ -18,7 +18,6 @@ public class UserInterface {
 
     //Constructor initializes the order and calls the homeScreen() method to start showing the options to the customer
     public UserInterface() {
-        this.order = new Order();
         this.scanner = new Scanner(System.in);
         homeScreen();
     }
@@ -28,10 +27,11 @@ public class UserInterface {
 
         //Prompt the user if they want to add an order or exit
         while (true) {
-            System.out.println("Welcome to Delicious Sandwich Shop");
+            System.out.println("\nWelcome to Delicious Sandwich Shop");
             System.out.println("Please pick one of the following options: \n");
-            System.out.println("-------Home Screen-------");
+            System.out.println("\n-------Home Screen-------");
             System.out.println("1) New Order");
+            System.out.println("2) Continue with the previous order");
             System.out.println("0) Exit");
 
             int option = scanner.nextInt();
@@ -40,8 +40,17 @@ public class UserInterface {
             //If the user selects option 1, then call the orderScreen() method to prompt the user for order options
             switch (option) {
                 case 1:
+                    this.order = new Order();
                     orderScreen();
                     break;
+                case 2:
+                    if (order != null){
+                        orderScreen();
+                        break;
+                    }else {
+                        System.out.println("You do not have a pre-existing order!");
+                        continue;
+                    }
                 case 0:
                     System.out.println("Good bye!");
                     return;
@@ -58,12 +67,12 @@ public class UserInterface {
         while (true) {
             //Options are listed below
             System.out.println(
-                    "---------Order Menu-----------\n" +
+                    "\n---------Order Menu-----------\n" +
                             "1) Add Sandwich\n" +
                             "2) Add Drink\n" +
                             "3) Add Chips\n" +
                             "4) Checkout\n" +
-                            "0) Cancel Order\n");
+                            "0) Go back to the main menu\n");
             //Save the input into the option variable
             String option = scanner.nextLine().trim();
 
@@ -100,7 +109,7 @@ public class UserInterface {
     //Method for prompting the user to input the customizing selections of a sandwich
     public void addSandwichScreen() {
 
-        System.out.println("Select your bread: \n" +
+        System.out.println("\nSelect your bread: \n" +
                 "1) white\n" +
                 "2) wheat\n" +
                 "3) rye\n" +
@@ -126,7 +135,7 @@ public class UserInterface {
                 return;
         }
 
-        System.out.println("Select the sandwich size: \n1-) 4''\n2-) 8''\n3-) 12''\n");
+        System.out.println("\nSelect the sandwich size: \n1-) 4''\n2-) 8''\n3-) 12''\n");
         int sizeOption = scanner.nextInt();
         scanner.nextLine();
         int size;
@@ -182,10 +191,18 @@ public class UserInterface {
 
         List<Topping> toppings = new ArrayList<>();
 
-        toppings.addAll(meats);
-        toppings.addAll(cheeses);
-        toppings.addAll(sauces);
-        toppings.addAll(regularToppings);
+        if (meats != null) {
+            toppings.addAll(meats);
+        }
+        if (cheeses != null) {
+            toppings.addAll(cheeses);
+        }
+        if (sauces != null) {
+            toppings.addAll(sauces);
+        }
+        if (regularToppings != null) {
+            toppings.addAll(regularToppings);
+        }
 
         for (Topping topping : toppings) {
             sandwich.addToppings(topping);
@@ -201,13 +218,14 @@ public class UserInterface {
         boolean continueMenu = true;
 
         while (continueMenu) {
-            System.out.println("Select one of the following meats to add to your sandwich: \n" +
+            System.out.println("\nSelect one of the following meats to add to your sandwich: \n" +
                     "1-) steak\n" +
                     "2-) ham\n" +
                     "3-) salami\n" +
                     "4-) roast beef\n" +
                     "5-) chicken\n" +
-                    "6-) bacon\n");
+                    "6-) bacon\n" +
+                    "7-) No Meat\n");
             String meatSelectedOption = scanner.nextLine().trim();
 
             String meatSelected = null;
@@ -231,6 +249,8 @@ public class UserInterface {
                 case "6":
                     meatSelected = "bacon";
                     break;
+                case "7":
+                    return null;
                 default:
                     System.out.println("Invalid sandwich meat selected!");
                     continue;
@@ -262,13 +282,14 @@ public class UserInterface {
         boolean continueMenu = true;
 
         while (continueMenu) {
-            System.out.println("Select one of the following sauces to add to your sandwich: \n" +
+            System.out.println("\nSelect one of the following sauces to add to your sandwich: \n" +
                     "1- mayo\n" +
                     "2- mustard\n" +
                     "3- ketchup\n" +
                     "4- ranch\n" +
                     "5- thousand islands\n" +
-                    "6- vinaigrette\n"
+                    "6- vinaigrette\n" +
+                    "7- No Sauce\n"
             );
             String sauceSelectedOption = scanner.nextLine().trim();
 
@@ -293,6 +314,8 @@ public class UserInterface {
                 case "6":
                     sauceSelected = "vinaigrette";
                     break;
+                case "7":
+                    return null;
                 default:
                     System.out.println("Invalid sandwich sauce selected!");
                     continue;
@@ -324,11 +347,12 @@ public class UserInterface {
         boolean continueMenu = true;
 
         while (continueMenu) {
-            System.out.println("Select one of the following cheese to add to your sandwich: \n" +
+            System.out.println("\nSelect one of the following cheese to add to your sandwich: \n" +
                     "1- american\n" +
                     "2- provolone\n" +
                     "3- cheddar\n" +
-                    "4- swiss"
+                    "4- swiss\n" +
+                    "5- No Cheese\n"
             );
             String cheeseSelectedOption = scanner.nextLine().trim();
 
@@ -347,6 +371,8 @@ public class UserInterface {
                 case "4":
                     cheeseSelected = "swiss";
                     break;
+                case "5":
+                    return null;
                 default:
                     System.out.println("Invalid sandwich cheese selected!");
                     continue;
@@ -376,7 +402,7 @@ public class UserInterface {
         boolean continueMenu = true;
 
         while (continueMenu) {
-            System.out.println("Select one of the following Regular Toppings to add to your sandwich: \n" +
+            System.out.println("\nSelect one of the following Regular Toppings to add to your sandwich: \n" +
                     "1- lettuce\n" +
                     "2- peppers\n" +
                     "3- onions\n" +
@@ -385,7 +411,8 @@ public class UserInterface {
                     "6- cucumbers\n" +
                     "7- pickles\n" +
                     "8- guacamole\n" +
-                    "9- mushrooms\n"
+                    "9- mushrooms\n" +
+                    "10- No Regular Topping"
             );
             String regularToppingSelectedOption = scanner.nextLine().trim();
 
@@ -419,6 +446,8 @@ public class UserInterface {
                 case "9":
                     regularToppingSelected = "mushrooms";
                     break;
+                case "10":
+                    return null;
                 default:
                     System.out.println("Invalid sandwich topping selected!");
                     continue;
@@ -444,7 +473,7 @@ public class UserInterface {
     //Method for prompting the user to input the customizing selections of a drink
     public void addDrinkScreen() {
 
-        System.out.println("Enter the flavor you want to pick for your drink: \n" +
+        System.out.println("\nEnter the flavor you want to pick for your drink: \n" +
                 "1) Pepsi\n" +
                 "2) Lemonade\n" +
                 "3) Orange Juice\n" +
@@ -498,7 +527,7 @@ public class UserInterface {
     //Method for prompting the user to input the customizing selections of a chip
     public void addChipScreen() {
 
-        System.out.println("Select the flavor of the chip you want to add: \n" +
+        System.out.println("\nSelect the flavor of the chip you want to add: \n" +
                 "1) BBQ\n" +
                 "2) Sea Salt\n" +
                 "3) Cheddar");

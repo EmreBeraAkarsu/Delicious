@@ -1,0 +1,5 @@
+
+sandwiches=[Sandwich{bread='white', size=4, toppings=[type='steak, type='swiss, type='mustard, type='jalepenos], isToasted=truePrice: $7.25}]
+chips=[Chip: Cheddar - Price: $1.5]
+drinks=[Drink: Orange Juice (s) - Price: $2.0]
+Total Price: 10.75

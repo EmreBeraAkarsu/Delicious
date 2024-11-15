@@ -83,9 +83,9 @@ public class Order {
     //Method to convert the data to a string
     @Override
     public String toString() {
-        return "sandwiches=" + sandwiches +
-                ", chips=" + chips +
-                ", drinks=" + drinks +
-                "Total Price: " + this.getTotalPrice();
+        return  "\nsandwiches=" + sandwiches +
+                "\nchips=" + chips +
+                "\ndrinks=" + drinks +
+                "\nTotal Price: " + this.getTotalPrice();
     }
 }

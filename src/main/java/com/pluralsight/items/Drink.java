@@ -27,7 +27,7 @@ public class Drink implements IPrice {
     @Override
     public double getPrice() {
         //Return the corresponding price for the size of the drink entered
-        switch (size) {
+        switch (size.toUpperCase()) {
             case "S":
                 return 2;
             case "M":
