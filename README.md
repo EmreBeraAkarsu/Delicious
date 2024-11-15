@@ -59,6 +59,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 ![Adding a sandwich 1.PNG](Imgs%2FAdding%20a%20sandwich%201.PNG)
 ![adding chips.PNG](Imgs%2Fadding%20chips.PNG)
 ![checkout.PNG](Imgs%2Fcheckout.PNG)
+![receipt.PNG](Imgs%2Freceipt.PNG)
 
 ## Future Work
 

@@ -37,20 +37,23 @@ public class UserInterface {
             int option = scanner.nextInt();
             scanner.nextLine();
 
-            //If the user selects option 1, then call the orderScreen() method to prompt the user for order options
+            //If the user selects option 1, create a new order then call the orderScreen() method to prompt the user for order options
             switch (option) {
                 case 1:
                     this.order = new Order();
                     orderScreen();
                     break;
+                //If the user selects 2 continue with the already created order
                 case 2:
                     if (order != null){
                         orderScreen();
                         break;
+                    //If there are no pre-existing order notify and show the home screen again
                     }else {
                         System.out.println("You do not have a pre-existing order!");
                         continue;
                     }
+                //If 0 is selected than stop the program
                 case 0:
                     System.out.println("Good bye!");
                     return;
@@ -118,21 +121,14 @@ public class UserInterface {
         String bread;
 
         switch (breadOption) {
-            case "1":
-                bread = "white";
-                break;
-            case "2":
-                bread = "wheat";
-                break;
-            case "3":
-                bread = "rye";
-                break;
-            case "4":
-                bread = "wrap";
-                break;
-            default:
+            case "1" -> bread = "white";
+            case "2" -> bread = "wheat";
+            case "3" -> bread = "rye";
+            case "4" -> bread = "wrap";
+            default -> {
                 System.out.println("Invalid bread option selected!");
                 return;
+            }
         }
 
         System.out.println("\nSelect the sandwich size: \n1-) 4''\n2-) 8''\n3-) 12''\n");
@@ -141,18 +137,13 @@ public class UserInterface {
         int size;
 
         switch (sizeOption) {
-            case 1:
-                size = 4;
-                break;
-            case 2:
-                size = 8;
-                break;
-            case 3:
-                size = 12;
-                break;
-            default:
+            case 1 -> size = 4;
+            case 2 -> size = 8;
+            case 3 -> size = 12;
+            default -> {
                 System.out.println("Invalid sandwich size selected!");
                 return;
+            }
         }
 
         boolean isToasted = false;
@@ -165,16 +156,15 @@ public class UserInterface {
             isToasted = false;
 
             switch (toastedOption) {
-                case "1":
+                case "1" -> {
                     isToasted = true;
                     continueRunning = false;
-                    break;
-                case "2":
+                }
+                case "2" -> {
                     isToasted = false;
                     continueRunning = false;
-                    break;
-                default:
-                    System.out.println("Invalid toasted option!");
+                }
+                default -> System.out.println("Invalid toasted option!");
             }
         }
 
@@ -231,31 +221,20 @@ public class UserInterface {
             String meatSelected = null;
 
             switch (meatSelectedOption) {
-                case "1":
-                    meatSelected = "steak";
-                    break;
-                case "2":
-                    meatSelected = "ham";
-                    break;
-                case "3":
-                    meatSelected = "salami";
-                    break;
-                case "4":
-                    meatSelected = "roast beef";
-                    break;
-                case "5":
-                    meatSelected = "chicken";
-                    break;
-                case "6":
-                    meatSelected = "bacon";
-                    break;
-                case "7":
+                case "1" -> meatSelected = "steak";
+                case "2" -> meatSelected = "ham";
+                case "3" -> meatSelected = "salami";
+                case "4" -> meatSelected = "roast beef";
+                case "5" -> meatSelected = "chicken";
+                case "6" -> meatSelected = "bacon";
+                case "7" -> {
                     return null;
-                default:
+                }
+                default -> {
                     System.out.println("Invalid sandwich meat selected!");
                     continue;
+                }
             }
-
             meats.add(new Meat(meatSelected));
 
             System.out.println("Do you want to add more meat? (yes/no)");
@@ -296,29 +275,19 @@ public class UserInterface {
             String sauceSelected;
 
             switch (sauceSelectedOption) {
-                case "1":
-                    sauceSelected = "mayo";
-                    break;
-                case "2":
-                    sauceSelected = "mustard";
-                    break;
-                case "3":
-                    sauceSelected = "ketchup";
-                    break;
-                case "4":
-                    sauceSelected = "ranch";
-                    break;
-                case "5":
-                    sauceSelected = "thousand islands";
-                    break;
-                case "6":
-                    sauceSelected = "vinaigrette";
-                    break;
-                case "7":
+                case "1" -> sauceSelected = "mayo";
+                case "2" -> sauceSelected = "mustard";
+                case "3" -> sauceSelected = "ketchup";
+                case "4" -> sauceSelected = "ranch";
+                case "5" -> sauceSelected = "thousand islands";
+                case "6" -> sauceSelected = "vinaigrette";
+                case "7" -> {
                     return null;
-                default:
+                }
+                default -> {
                     System.out.println("Invalid sandwich sauce selected!");
                     continue;
+                }
             }
 
             sauces.add(new Sauce(sauceSelected));
@@ -359,25 +328,18 @@ public class UserInterface {
             String cheeseSelected;
 
             switch (cheeseSelectedOption) {
-                case "1":
-                    cheeseSelected = "american";
-                    break;
-                case "2":
-                    cheeseSelected = "provolone";
-                    break;
-                case "3":
-                    cheeseSelected = "cheddar";
-                    break;
-                case "4":
-                    cheeseSelected = "swiss";
-                    break;
-                case "5":
+                case "1" -> cheeseSelected = "american";
+                case "2" -> cheeseSelected = "provolone";
+                case "3" -> cheeseSelected = "cheddar";
+                case "4" -> cheeseSelected = "swiss";
+                case "5" -> {
                     return null;
-                default:
+                }
+                default -> {
                     System.out.println("Invalid sandwich cheese selected!");
                     continue;
+                }
             }
-
             cheeses.add(new Cheese(cheeseSelected));
 
             System.out.println("Do you want to add more cheese? (yes/no)");
@@ -419,38 +381,22 @@ public class UserInterface {
             String regularToppingSelected;
 
             switch (regularToppingSelectedOption) {
-                case "1":
-                    regularToppingSelected = "lettuce";
-                    break;
-                case "2":
-                    regularToppingSelected = "peppers";
-                    break;
-                case "3":
-                    regularToppingSelected = "onions";
-                    break;
-                case "4":
-                    regularToppingSelected = "tomatoes";
-                    break;
-                case "5":
-                    regularToppingSelected = "jalepenos";
-                    break;
-                case "6":
-                    regularToppingSelected = "cucumbers";
-                    break;
-                case "7":
-                    regularToppingSelected = "pickles";
-                    break;
-                case "8":
-                    regularToppingSelected = "guacamole";
-                    break;
-                case "9":
-                    regularToppingSelected = "mushrooms";
-                    break;
-                case "10":
+                case "1" -> regularToppingSelected = "lettuce";
+                case "2" -> regularToppingSelected = "peppers";
+                case "3" -> regularToppingSelected = "onions";
+                case "4" -> regularToppingSelected = "tomatoes";
+                case "5" -> regularToppingSelected = "jalapenos";
+                case "6" -> regularToppingSelected = "cucumbers";
+                case "7" -> regularToppingSelected = "pickles";
+                case "8" -> regularToppingSelected = "guacamole";
+                case "9" -> regularToppingSelected = "mushrooms";
+                case "10" -> {
                     return null;
-                default:
+                }
+                default -> {
                     System.out.println("Invalid sandwich topping selected!");
                     continue;
+                }
             }
 
             regularToppings.add(new RegularTopping(regularToppingSelected));
@@ -487,33 +433,18 @@ public class UserInterface {
         String flavor;
 
         switch (option) {
-            case "1":
-                flavor = "Pepsi";
-                break;
-            case "2":
-                flavor = "Lemonade";
-                break;
-            case "3":
-                flavor = "Orange Juice";
-                break;
-            case "4":
-                flavor = "Turkish Tea";
-                break;
-            case "5":
-                flavor = "Turkish Coffee";
-                break;
-            case "6":
-                flavor = "Salgam";
-                break;
-            case "7":
-                flavor = "ARAK";
-                break;
-            case "8":
-                flavor = "Sahlap";
-                break;
-            default:
+            case "1" -> flavor = "Pepsi";
+            case "2" -> flavor = "Lemonade";
+            case "3" -> flavor = "Orange Juice";
+            case "4" -> flavor = "Turkish Tea";
+            case "5" -> flavor = "Turkish Coffee";
+            case "6" -> flavor = "Salgam";
+            case "7" -> flavor = "ARAK";
+            case "8" -> flavor = "Sahlap";
+            default -> {
                 System.out.println("Invalid drink flavor selected!");
                 return;
+            }
         }
 
         System.out.println("Select the size of the drink you want to select: (S/M/L)");
@@ -536,18 +467,13 @@ public class UserInterface {
         String flavor;
 
         switch (option) {
-            case "1":
-                flavor = "BBQ";
-                break;
-            case "2":
-                flavor = "Sea Salt";
-                break;
-            case "3":
-                flavor = "Cheddar";
-                break;
-            default:
+            case "1" -> flavor = "BBQ";
+            case "2" -> flavor = "Sea Salt";
+            case "3" -> flavor = "Cheddar";
+            default -> {
                 System.out.println("Incorrect chip flavor entered!");
                 return;
+            }
         }
 
         order.addChip(new Chip(flavor));
